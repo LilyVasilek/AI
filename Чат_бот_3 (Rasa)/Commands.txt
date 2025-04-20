@@ -1,4 +1,0 @@
-.\rasa-env\Scripts\Activate.ps1
-rasa train
-rasa run actions
-rasa shell
