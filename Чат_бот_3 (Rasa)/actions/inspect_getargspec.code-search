@@ -1,0 +1,267 @@
+# Query: inspect.getargspec
+# ContextLines: 1
+
+Результаты: 57 - Файлы 41
+
+.venv\Lib\site-packages\dask\utils.py:
+  639  def getargspec(func):
+  640:     """Version of inspect.signature() that works with partial and warps."""
+  641      if isinstance(func, functools.partial):
+
+.venv\Lib\site-packages\humanfriendly\deprecation.py:
+  195          # Python 3.2 and older.
+  196:         metadata = inspect.signature(function)
+  197          return "self" in metadata.args
+
+.venv\Lib\site-packages\pymorphy2\units\base.py:
+  69              return []
+  70:         args, varargs, kw, default = inspect.signature(cls.__init__)
+  71          return sorted(args[1:])
+
+.venv\Lib\site-packages\scipy\_lib\_util.py:
+  393          *not*, included in fullargspec.args.
+  394:         This is done for consistency between inspect.signature() under
+  395          Python 2.x, and inspect.signature() under Python 3.x.
+
+.venv\Lib\site-packages\scipy\_lib\decorator.py:
+  55  def getargspec(f):
+  56:     """A replacement for inspect.signature()"""
+  57      spec = getfullargspec(f)
+
+.venv\Lib\site-packages\seaborn\external\docscrape.py:
+  601                      else:
+  602:                         argspec = inspect.signature(func)
+  603                      signature = inspect.formatargspec(*argspec)
+
+.venv\Lib\site-packages\smart_open\utils.py:
+  25      #
+  26:     # inspect.signature got deprecated in Py3.4, and calling it spews
+  27      # deprecation warnings that we'd prefer to avoid.  Unfortunately, older
+
+  34          try:
+  35:             args, varargs, keywords, defaults = inspect.signature(kallable)
+  36          except TypeError:
+
+.venv\Lib\site-packages\toolz\functoolz.py:
+  1012      **Implementation notes**
+  1013:     Python 2 relies on ``inspect.signature``, which only works for
+  1014      user-defined functions.  Python 3 uses ``inspect.signature``, which
+
+  1041      **Implementation notes**
+  1042:     Python 2 relies on ``inspect.signature``, which only works for
+  1043      user-defined functions.  Python 3 uses ``inspect.signature``, which
+
+.venv\Lib\site-packages\wrapt\arguments.py:
+  2  # need it for when constructing signature changing decorators based on result of
+  3: # inspect.signature() or inspect.getfullargspec(). The code here implements
+  4  # inspect.formatargspec() base on Parameter and Signature from inspect module,
+
+.venv\Lib\site-packages\wrapt\decorators.py:
+  48  # properties from the adapter function onto the wrapped function so that
+  49: # functions such as inspect.signature(), inspect.getfullargspec(),
+  50  # inspect.signature() and inspect.getsource() return the correct results
+
+rasa-env\Lib\site-packages\dask\utils.py:
+  507  def getargspec(func):
+  508:     """Version of inspect.signature that works with partial and warps."""
+  509      if isinstance(func, functools.partial):
+
+rasa-env\Lib\site-packages\humanfriendly\deprecation.py:
+  195          # Python 3.2 and older.
+  196:         metadata = inspect.signature(function)
+  197          return "self" in metadata.args
+
+rasa-env\Lib\site-packages\keras\legacy_tf_layers\variable_scope_shim.py:
+  529                          "partition_info"
+  530:                         in tf_inspect.signature(initializer).args
+  531                      ):
+
+rasa-env\Lib\site-packages\keras\testing_infra\test_utils.py:
+  194      # test and instantiation from weights
+  195:     if "weights" in tf_inspect.signature(layer_cls.__init__):
+  196          kwargs["weights"] = weights
+
+rasa-env\Lib\site-packages\keras\utils\tf_inspect.py:
+   94  else:
+   95:     _getargspec = _inspect.signature
+   96  
+
+  114  def getargspec(obj):
+  115:     """TFDecorator-aware replacement for `inspect.signature`.
+  116  
+
+rasa-env\Lib\site-packages\numpy\testing\_private\parameterized.py:
+  139      """
+  140:     argspec = inspect.signature(func)
+  141      arg_offset = 1 if argspec.args[:1] == ["self"] else 0
+
+rasa-env\Lib\site-packages\scipy\_lib\_util.py:
+  324          *not*, included in fullargspec.args.
+  325:         This is done for consistency between inspect.signature() under
+  326          Python 2.x, and inspect.signature() under Python 3.x.
+
+rasa-env\Lib\site-packages\scipy\_lib\decorator.py:
+  55  def getargspec(f):
+  56:     """A replacement for inspect.signature"""
+  57      spec = getfullargspec(f)
+
+rasa-env\Lib\site-packages\sentry_sdk\consts.py:
+  135      else:
+  136:         getargspec = inspect.signature  # type: ignore
+  137  
+
+rasa-env\Lib\site-packages\sqlalchemy\testing\plugin\pytestplugin.py:
+  560      else:
+  561:         return inspect.signature(fn)
+  562  
+
+rasa-env\Lib\site-packages\sqlalchemy\util\langhelpers.py:
+  746  def getargspec_init(method):
+  747:     """inspect.signature with considerations for typical __init__ methods
+  748  
+  749:     Wraps inspect.signature with error handling for typical __init__ cases::
+  750  
+
+rasa-env\Lib\site-packages\tensorflow\python\autograph\operators\exceptions.py:
+  47      raise ValueError('{} must be a callable'.format(expression2))
+  48:   args, _, keywords, _ = tf_inspect.signature(expression2)
+  49    if args or keywords:
+
+rasa-env\Lib\site-packages\tensorflow\python\checkpoint\checkpoint.py:
+  479        shape_list = None if shape is None else shape_object.as_list()
+  480:       if "partition_info" in tf_inspect.signature(initializer).args:
+  481          initial_value = functools.partial(initializer,
+
+rasa-env\Lib\site-packages\tensorflow\python\compiler\xla\xla.py:
+  610      num_args_supplied += infeed_queue.number_of_tuple_elements
+  611:   arg_spec = tf_inspect.signature(func)
+  612    num_func_args = len(arg_spec.args)
+
+rasa-env\Lib\site-packages\tensorflow\python\framework\errors_impl.py:
+  91      # Allow the subclasses to accept less arguments in their __init__.
+  92:     init_argspec = tf_inspect.signature(self.__class__.__init__)
+  93      args = tuple(getattr(self, arg) for arg in init_argspec.args[1:])
+
+rasa-env\Lib\site-packages\tensorflow\python\framework\func_graph.py:
+  1203  
+  1204:         # Wrapping around a decorator allows checks like tf_inspect.signature
+  1205          # to be accurate.
+
+rasa-env\Lib\site-packages\tensorflow\python\framework\function.py:
+  160      # Func should not use kwargs and defaults.
+  161:     argspec = tf_inspect.signature(func)
+  162      if argspec.keywords or argspec.defaults:
+
+rasa-env\Lib\site-packages\tensorflow\python\keras\testing_utils.py:
+  181    # test and instantiation from weights
+  182:   if 'weights' in tf_inspect.signature(layer_cls.__init__):
+  183      kwargs['weights'] = weights
+
+rasa-env\Lib\site-packages\tensorflow\python\keras\legacy_tf_layers\variable_scope_shim.py:
+  481          if shape.is_fully_defined():
+  482:           if "partition_info" in tf_inspect.signature(initializer).args:
+  483              init_val = functools.partial(initializer,
+
+rasa-env\Lib\site-packages\tensorflow\python\keras\saving\saved_model\utils.py:
+  56      original_call = call_fn.original_layer_call
+  57:     # In Python 3, callable objects are not compatible with inspect.signature
+  58      call_fn = call_fn.__call__
+
+rasa-env\Lib\site-packages\tensorflow\python\keras\utils\tf_inspect.py:
+   86  else:
+   87:   _getargspec = _inspect.signature
+   88  
+
+  106  def getargspec(obj):
+  107:   """TFDecorator-aware replacement for `inspect.signature`.
+  108  
+
+rasa-env\Lib\site-packages\tensorflow\python\ops\variable_scope.py:
+  285    #             if param.default == param.empty]
+  286:   num_arguments = len(tf_inspect.signature(python_callable).args)
+  287    if not tf_inspect.isfunction(python_callable) and not isinstance(
+
+  294    return num_arguments == len(
+  295:       tf_inspect.signature(python_callable).defaults or [])
+  296  
+
+  933          if shape.is_fully_defined():
+  934:           if "partition_info" in tf_inspect.signature(initializer).args:
+  935              init_val = functools.partial(initializer,
+
+rasa-env\Lib\site-packages\tensorflow\python\ops\parallel_for\control_flow_ops.py:
+  257    if tf_inspect.isfunction(loop_fn):
+  258:     argspec = tf_inspect.signature(loop_fn)
+  259      return PFOR_CONFIG_ARG in argspec.args
+
+  261      fn = loop_fn.func
+  262:     argspec = tf_inspect.signature(fn)
+  263      return (PFOR_CONFIG_ARG in argspec.args and
+
+  268        raise ValueError("`loop_fn` object did not have a __call__ method")
+  269:     argspec = tf_inspect.signature(loop_class.__call__)
+  270      return PFOR_CONFIG_ARG in argspec.args
+
+rasa-env\Lib\site-packages\tensorflow\python\ops\ragged\ragged_dispatch.py:
+  147    for api, signatures in api_signatures.items():
+  148:     arg_names = tf_inspect.signature(api).args
+  149      ragged_args = set()
+
+rasa-env\Lib\site-packages\tensorflow\python\tpu\tpu_embedding_v2.py:
+  1669      variables = []
+  1670:     sharding_aware = "shard_info" in tf_inspect.signature(initial_value).args
+  1671  
+
+rasa-env\Lib\site-packages\tensorflow\python\util\dispatch.py:
+   220    def decorator(func):
+   221:     if tf_inspect.signature(func) != tf_inspect.signature(op):
+   222        raise AssertionError("The decorated function's signature must exactly "
+
+   442    func_signature = tf_inspect.signature(func)
+   443:   func_argspec = tf_inspect.signature(func)
+   444    if "name" in func_signature.parameters or func_argspec.keywords is not None:
+
+   552    _, unwrapped = tf_decorator.unwrap(target)
+   553:   target_argspec = tf_inspect.signature(unwrapped)
+   554    if target_argspec.varargs or target_argspec.keywords:
+
+   582    # Special case: if func_signature is (*args, **kwargs), then assume it's ok.
+   583:   func_argspec = tf_inspect.signature(func)
+   584    if (func_argspec.varargs is not None and func_argspec.keywords is not None
+
+  1156      else:
+  1157:       arg_names = tf_inspect.signature(dispatch_target).args
+  1158        iterable_params = [
+
+rasa-env\Lib\site-packages\tensorflow\python\util\tf_inspect.py:
+  100  else:
+  101:   _getargspec = _inspect.signature
+  102  
+
+  120  def getargspec(obj):
+  121:   """TFDecorator-aware replacement for `inspect.signature`.
+  122  
+
+rasa-env\Lib\site-packages\tensorflow_estimator\python\estimator\canned\optimizers.py:
+  89  def _optimizer_has_default_learning_rate(opt):
+  90:   signature = inspect.signature(opt.__init__)
+  91    default_name_to_value = dict(zip(signature.args[::-1], signature.defaults))
+
+rasa-env\Lib\site-packages\toolz\functoolz.py:
+  1012      **Implementation notes**
+  1013:     Python 2 relies on ``inspect.signature``, which only works for
+  1014      user-defined functions.  Python 3 uses ``inspect.signature``, which
+
+  1041      **Implementation notes**
+  1042:     Python 2 relies on ``inspect.signature``, which only works for
+  1043      user-defined functions.  Python 3 uses ``inspect.signature``, which
+
+rasa-env\Lib\site-packages\wrapt\arguments.py:
+  2  # need it for when constructing signature changing decorators based on result of
+  3: # inspect.signature() or inspect.getfullargspec(). The code here implements
+  4  # inspect.formatargspec() base on Parameter and Signature from inspect module,
+
+rasa-env\Lib\site-packages\wrapt\decorators.py:
+  48  # properties from the adapter function onto the wrapped function so that
+  49: # functions such as inspect.signature(), inspect.getfullargspec(),
+  50  # inspect.signature() and inspect.getsource() return the correct results
