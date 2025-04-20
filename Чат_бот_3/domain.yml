@@ -1,0 +1,174 @@
+version: "3.1"
+
+config:
+  language: "ru"
+  time_format: "%H:%M"
+
+intents:
+  - greet
+  - goodbye
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - ask_repeat
+  - affirm
+  - deny
+  - weather_query
+  - ask_time
+  - ask_date
+  - ask_day
+  - ask_name
+  - tell_name
+  - search_web
+  - ask_joke
+  - ask_capabilities
+  - thank_you
+  - calculate
+  - ask_moodbot
+  - repeat_phrase
+  - talk 
+  - nlu_fallback
+  - inform
+  - utter_ask_city
+
+
+entities:
+  - city
+  - name
+  - expression
+  - query
+  - repeat_phrase
+
+slots:
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: name
+
+  last_bot_message:
+    type: text
+    mappings:
+      - type: from_text
+
+  phrase_to_repeat:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: repeat_phrase
+
+  city:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: city
+
+
+  expression:
+    type: text
+    mappings:
+      - type: from_text
+        entity: expression
+
+  query:
+    type: text
+    mappings:
+      - type: from_text
+        entity: query
+
+responses:
+  utter_greet:
+    - text: "Привет! Чем могу помочь?"
+    - text: "Здравствуйте! Как у вас дела?"
+    - text: "Добро пожаловать! Я готов помочь."
+    - text: "Хей! Рад тебя видеть."
+
+  utter_goodbye:
+    - text: "Пока! Хорошего дня 😊"
+    - text: "До свидания! Обращайся, если что."
+    - text: "Увидимся!"
+    - text: "Береги себя. До скорого!"
+
+  utter_moodbot:
+    - text: "Я в порядке! Спасибо, что спросил. А ты как?"
+
+  utter_ask_city:
+    - text: "В каком городе тебя интересует погода?"
+    - text: "В каком городе вы хотите узнать погоду?"
+
+  utter_default:
+    - text: "Извини, я не совсем понял. Можешь переформулировать?"
+
+  utter_ask_name:
+    - text: "Как тебя зовут?"
+
+  utter_affirm:
+    - text: "Отлично!"
+    - text: "Хорошо, понял."
+    - text: "Супер, двигаемся дальше!"
+
+  utter_repeat_phrase:
+    - text: "{phrase_to_repeat}"
+
+  utter_deny:
+    - text: "Понял, не будем тогда."
+    - text: "Окей, учту."
+    - text: "Хорошо, отменим."
+
+  utter_happy:
+    - text: "Рад это слышать! 😊"
+    - text: "Супер! Продолжай в том же духе!"
+    - text: "Отлично, это замечательно!"
+
+  utter_capabilities:
+    - text: "Я могу рассказать о погоде, дате, времени, пошутить, поддержать и даже посчитать выражение!"
+
+  utter_thank_you:
+    - text: "Пожалуйста!"
+
+  utter_mood_positive:
+    - text: "Здорово! Продолжай в том же духе 😊"
+
+  utter_mood_negative:
+    - text: "Не переживай, всё обязательно наладится 💙"
+
+  utter_joke:
+    - text: "Почему программисты путают Рождество и Хэллоуин? Потому что 31 OCT = 25 DEC."
+
+  utter_cheer_up:
+    - text: "Не грусти, всё наладится!"
+    - text: "Кажется, день выдался тяжёлым. Я рядом 💙"
+    - text: "Держись! Я с тобой."
+
+  utter_iamabot:
+    - text: "Я бот, созданный, чтобы помогать людям!"
+    - text: "Я виртуальный ассистент, не человек, но очень стараюсь 🤖"
+    - text: "Ты говоришь с ботом. Но я здесь, чтобы быть полезным!"
+
+  utter_search_result:
+    - text: "Вот что я нашел: {query}"
+
+
+        
+
+actions:
+  - action_get_weather
+  - action_tell_time
+  - action_tell_date
+  - action_tell_day
+  - action_remember_name
+  - action_get_name
+  - action_search_web
+  - action_calculate  
+  - action_analyze_mood
+  - action_talk_support
+  - action_repeat_message
+  - weather_form
+  - action_repeat_phrase  
+  
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
