@@ -1,0 +1,126 @@
+version: "3.1"
+
+stories:
+  - story: Приветствие и прощание
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Позитивное настроение
+    steps:
+      - intent: mood_great
+      - action: utter_mood_positive
+      - action: utter_happy
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Печальное настроение и поддержка
+    steps:
+      - intent: mood_unhappy
+      - action: utter_mood_negative
+      - action: utter_cheer_up
+
+  - story: Вопрос о боте
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Запрос возможностей
+    steps:
+      - intent: ask_capabilities
+      - action: utter_capabilities
+
+  - story: Благодарность
+    steps:
+      - intent: thank_you
+      - action: utter_thank_you  
+
+  - story: Повтор сообщения
+    steps:
+      - intent: ask_repeat
+      - action: action_repeat_phrase
+      - action: utter_repeat_phrase 
+
+  - story: Подтверждение
+    steps:
+      - intent: affirm
+      - action: utter_affirm
+
+  - story: Отрицание
+    steps:
+      - intent: deny
+      - action: utter_deny
+
+  - story: ask weather with city provided
+    steps:
+      - intent: weather_query
+        entities:
+          - city: "Москва"  # Указанный город
+      - action: action_get_weather
+
+  - story: ask weather without city
+    steps:
+      - intent: weather_query
+      - action: utter_ask_city  # Спрашиваем город
+      - intent: inform
+        entities:
+          - city: "Санкт-Петербург"  # Указанный город
+      - action: action_get_weather
+
+  - story: Время
+    steps:
+      - intent: ask_time
+      - action: action_tell_time
+
+  - story: Дата
+    steps:
+      - intent: ask_date
+      - action: action_tell_date
+
+  - story: День недели
+    steps:
+      - intent: ask_day
+      - action: action_tell_day
+
+  # История для запроса имени
+  - story: Запрос имени
+    steps:
+      - intent: ask_name
+      - action: utter_ask_name  # Запрашиваем имя
+      - intent: tell_name  # Ожидаем, что пользователь сообщит имя
+      - action: action_remember_name  # Сохраняем имя
+
+  - story: Ответ на вопрос о имени
+    steps:
+      - intent: tell_name
+      - action: action_get_name
+
+  - story: Ответ на вопрос о делах
+    steps:
+      - intent: ask_moodbot
+      - action: utter_moodbot
+  
+  - story: Вычисления
+    steps:
+      - intent: calculate
+      - action: action_calculate
+
+  - story: Поиск в интернете
+    steps:
+      - intent: search_web
+      - action: action_search_web
+      - action: utter_search_result
+
+  - story: Рассказать шутку
+    steps:
+      - intent: ask_joke
+      - action: utter_joke
+
+  - story: Повтор фразы
+    steps:
+      - intent: repeat_phrase
+      - action: action_repeat_phrase

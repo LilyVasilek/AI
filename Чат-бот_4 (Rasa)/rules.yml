@@ -1,0 +1,138 @@
+version: "3.1"
+
+rules:
+- rule: Приветствие
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- rule: Прощание
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+- rule: Позитивное настроение
+  steps:
+    - intent: mood_great
+    - action: utter_mood_positive
+    - action: utter_happy
+
+- rule: Негативное настроение
+  steps:
+    - intent: mood_unhappy
+    - action: utter_mood_negative
+    - action: utter_cheer_up
+
+- rule: Проверка на бота
+  steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
+
+- rule: Повтор сообщения
+  steps:
+    - intent: ask_repeat
+    - action: action_repeat_phrase
+    - action: utter_repeat_phrase
+
+- rule: Подтверждение
+  steps:
+    - intent: affirm
+    - action: utter_affirm
+
+- rule: Отрицание
+  steps:
+    - intent: deny
+    - action: utter_deny
+
+- rule: Запрос возможностей
+  steps:
+    - intent: ask_capabilities
+    - action: utter_capabilities
+
+- rule: Благодарность
+  steps:
+    - intent: thank_you
+    - action: utter_thank_you
+
+- rule: Рассказать шутку
+  steps:
+    - intent: ask_joke
+    - action: utter_joke
+
+- rule: Запрос времени
+  steps:
+    - intent: ask_time
+    - action: action_tell_time
+
+- rule: Запрос даты
+  steps:
+    - intent: ask_date
+    - action: action_tell_date
+
+- rule: Запрос дня недели
+  steps:
+    - intent: ask_day
+    - action: action_tell_day
+
+- rule: Сохраняем имя пользователя
+  steps:
+    - intent: tell_name
+    - slot_was_set:
+        - name: Лиля  
+    - action: action_remember_name
+
+- rule: Запрос имени
+  steps:
+    - intent: ask_name
+    - action: utter_ask_name
+    
+
+- rule: Поиск в интернете
+  steps:
+    - intent: search_web
+    - action: action_search_web
+    - action: utter_search_result
+
+- rule: Вычисления
+  steps:
+    - intent: calculate
+    - action: action_calculate
+
+- rule: Обработка fallback
+  steps:
+    - intent: nlu_fallback
+    - action: utter_default
+
+- rule: Настроение бота
+  steps:
+    - intent: ask_moodbot
+    - action: utter_moodbot
+
+- rule: Поддержка в разговоре
+  steps:
+    - intent: talk
+    - action: action_talk_support
+
+- rule: Повтор произвольной фразы
+  steps:
+    - intent: repeat_phrase
+    - action: action_repeat_phrase
+    - action: action_listen
+
+- rule: Provide weather when city is provided
+  steps:
+    - intent: weather_query
+      entities:
+        - city  # Если город уже указан, получаем погоду
+    - action: action_get_weather
+
+- rule: Ask for city when weather requested
+  steps:
+    - intent: weather_query
+    - action: utter_ask_city 
+
+
+
+
+
+ 
