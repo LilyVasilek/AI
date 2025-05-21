@@ -1,0 +1,5 @@
+.\rasa_env\Scripts\activate
+rasa run actions
+rasa train
+rasa shell
+ 
